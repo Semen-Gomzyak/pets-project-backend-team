@@ -1,5 +1,6 @@
-const notices = require('./notices');
+const users = require('./users');
 
 module.exports = {
-    notices
-}
+  users,
+};
+
