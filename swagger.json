@@ -1,0 +1,38 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Pets-project-app-backend",
+    "description": "This is the API of the pets application."
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "The Users tag represents the set of APIs related to user management. It includes endpoints for registering a new user, logging in, updating user information, updating the user's profile photo, checking authentication status, and refreshing the authentication token."
+    },
+    {
+      "name": "Pets",
+      "description": "The Pets tag represents the set of APIs related to pet management. It includes endpoints for adding a pet to a user, retrieving pet information based on its ID, retrieving a list of pets added by the user, deleting a pet, updating pet information, and updating the pet's photo."
+    },
+    {
+      "name": "Notices",
+      "description": "The Notices tag represents the set of APIs related to notice management. It includes endpoints for adding and removing notices from favorites, adding notices, searching for notices by title, getting a list of favorited notices, searching for notices by ID, searching for notices by categories, deleting notices, updating the notice photo, and getting a list of notices added by the user."
+    },
+    {
+      "name": "Services",
+      "description": "The Services tag represents the set of APIs related to service management. It includes endpoints for adding a new service, updating the logo/avatar of a service, and retrieving a list of all available services."
+    },
+    {
+      "name": "News",
+      "description": "The News tag represents the set of APIs related to news management. It includes endpoints for adding a new news item and retrieving a list of all news items"
+    }
+  ],
+  "paths": {}
+}
