@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const serviceValidate = Joi.object({
   name: Joi.string().min(2).max(128).required(),
@@ -7,6 +7,6 @@ const serviceValidate = Joi.object({
   email: Joi.string().email().required(),
   phone: Joi.string(),
   website: Joi.string().min(2).max(128).required(),
-})
+});
 
 module.exports = serviceValidate;

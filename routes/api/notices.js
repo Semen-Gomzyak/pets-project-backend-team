@@ -1,17 +1,32 @@
 const express = require('express');
+
+const noticesRouter = express.Router();
 const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
+
+const {
+  createNotice,
+  noticeInfo,
+  updateFavoriteNotice,
+  favoriteNotices,
+} = require('../../controllers/notices/notices.controller');
+
+noticesRouter.post('/', tryCatchWrapper(createNotice));
+noticesRouter.get('/:noticeId', tryCatchWrapper(noticeInfo));
+noticesRouter.patch(
+  '/:userId/favorite/:noticeId',
+  tryCatchWrapper(updateFavoriteNotice),
+);
+noticesRouter.get('/:userId/favorite', tryCatchWrapper(favoriteNotices));
+
 const validateBody = require('../../middlwares/ValidateBody');
 const validateNotice = require('../../validation/noticeValidation');
+const { notices: enpoint } = require('../../controllers');
 
-// const { notices: enpoint } = require('../../controllers');
-// const { addNotice, getNoticesByCategory, getByCategoryAndTitle } = enpoint;
 const {
   addNotice,
   getNoticesByCategory,
   getByCategoryAndTitle,
-} = require('../../controllers/notices');
-
-const router = express.Router();
+} = require('../../controllers');
 
 const validatePost = validateBody(validateNotice);
 
