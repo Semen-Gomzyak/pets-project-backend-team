@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const serviceSchema = new mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
     },
-    time: {
-      type: String,
+   workDays: {
+      type: Array,
       default: null,
     },
     address: {
@@ -22,15 +22,11 @@ const serviceSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-    avatarURL: {
+    imageUrl: {
       type: String,
       default: null,
     },
-    website: {
-      type: String,
-      required: true,
-    },
-  },
+     },
   {
     timestamps: true,
     versionKey: false,
