@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
 
-const { validateRegistration, loginValidation } = require('../../validation');
+const {
+  validateRegistration,
+  loginValidation,
+  serviceValidate,
+} = require('../../validation');
 const validateBody = require('../../middlwares/ValidateBody');
 const auth = require('../../middlwares/auth');
 
@@ -10,6 +14,7 @@ const {
   userRegistration,
   userLogin,
   getUserById,
+  updateUser,
 } = require('../../controllers/users');
 
 router.post(
@@ -19,5 +24,10 @@ router.post(
 );
 router.get('/login', validateBody(loginValidation), tryCatchWrapper(userLogin));
 router.get('/:userId', auth, tryCatchWrapper(getUserById));
+router.patch(
+  '/:properties',
+  validateBody(serviceValidate),
+  tryCatchWrapper(updateUser),
+);
 
 module.exports = router;
