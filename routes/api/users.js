@@ -5,7 +5,11 @@ const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
 const {
   validateRegistration,
   loginValidation,
+
+  updateUserValidate,
+
   serviceValidate,
+
 } = require('../../validation');
 const validateBody = require('../../middlwares/ValidateBody');
 const auth = require('../../middlwares/auth');
@@ -28,9 +32,13 @@ router.post(
   tryCatchWrapper(userLogin),
 );
 router.get('/:userId', auth, tryCatchWrapper(getUserById));
+
+
 router.patch(
   '/:properties',
-  validateBody(serviceValidate),
+  auth,
+  validateBody(updateUserValidate),
+
   tryCatchWrapper(updateUser),
 );
 
