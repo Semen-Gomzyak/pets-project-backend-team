@@ -13,7 +13,7 @@ async function userRegistration(req, res, next) {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    await User.create({
+    const createdUser = await User.create({
       email,
       password: hashedPassword,
       name,
@@ -22,7 +22,17 @@ async function userRegistration(req, res, next) {
       verificationToken,
     });
 
-    res.status(201).json({ message: 'Registration succesfull' });
+    const responce = {
+      message: 'Registration succesfull',
+      email,
+      name,
+      cityRegion,
+      mobilePhone,
+      avatarURL: createdUser.avatarURL,
+      birthday: createdUser.birthday,
+    };
+
+    res.status(201).json(responce);
   } catch (error) {
     if (error.code === 11000) {
       throw HttpError(409, 'Email in use');

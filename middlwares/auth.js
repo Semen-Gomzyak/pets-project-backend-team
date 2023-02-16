@@ -6,6 +6,7 @@ require('../config/config-passport');
 const auth = async (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user) => {
     if (!user || err || !user.token) {
+      console.log(err);
       return res.status(401).json({
         message: 'Unauthorized',
       });

@@ -21,6 +21,7 @@ noticesRouter.get('/:userId/favorite', tryCatchWrapper(favoriteNotices));
 const validateBody = require('../../middlwares/ValidateBody');
 const validateNotice = require('../../validation/noticeValidation');
 
+
 const {
   addNotice,
   getNoticesByCategory,
@@ -29,10 +30,13 @@ const {
 
 const validatePost = validateBody(validateNotice);
 
-noticesRouter.post('/category/:category', validatePost, tryCatchWrapper(addNotice));
+noticesRouter.post(
+  '/category/:category',
+  validatePost,
+  tryCatchWrapper(addNotice),
+);
 noticesRouter.get('/category/:category', tryCatchWrapper(getNoticesByCategory));
 noticesRouter.get('/:category/:title', tryCatchWrapper(getByCategoryAndTitle));
 
 
 module.exports = noticesRouter;
-
