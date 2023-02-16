@@ -20,4 +20,5 @@ router.post(
 router.get('/login', validateBody(loginValidation), tryCatchWrapper(userLogin));
 router.get('/:userId', auth, tryCatchWrapper(getUserById));
 
+
 module.exports = router;
