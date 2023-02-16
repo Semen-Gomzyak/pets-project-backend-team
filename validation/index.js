@@ -4,6 +4,7 @@ const validateNotice = require('./noticeValidation');
 const validateRegistration = require('./registrationValidation');
 const serviceValidate = require('./serviceValidation');
 const newsValidate = require('./newsValidation');
+const updateUserValidate = require('./updateUserValidation');
 
 module.exports = {
   loginValidation,
@@ -12,4 +13,5 @@ module.exports = {
   validateRegistration,
   serviceValidate,
   newsValidate,
+  updateUserValidate,
 };
