@@ -29,10 +29,12 @@ const {
 
 const validatePost = validateBody(validateNotice);
 
-noticesRouter.post('/category/:category', validatePost, tryCatchWrapper(addNotice));
+noticesRouter.post(
+  '/category/:category',
+  validatePost,
+  tryCatchWrapper(addNotice),
+);
 noticesRouter.get('/category/:category', tryCatchWrapper(getNoticesByCategory));
 noticesRouter.get('/:category/:title', tryCatchWrapper(getByCategoryAndTitle));
 
-
 module.exports = noticesRouter;
-

@@ -25,10 +25,8 @@ async function userLogin(req, res, next) {
     await User.findByIdAndUpdate(storedUser._id, { token });
 
     const responseData = {
-      data: {
-        token,
-        _id: storedUser._id,
-      },
+      token,
+      _id: storedUser._id,
     };
     res.status(200).json({ ...responseData });
   } catch (error) {
