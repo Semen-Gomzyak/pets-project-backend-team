@@ -21,9 +21,11 @@ noticesRouter.get('/:userId/favorite', tryCatchWrapper(favoriteNotices));
 const validateBody = require('../../middlwares/ValidateBody');
 const validateNotice = require('../../validation/noticeValidation');
 
-const { notices: enpoint } = require('../../controllers')
-
-const { addNotice, getNoticesByCategory, getByCategoryAndTitle } = enpoint;
+const {
+  addNotice,
+  getNoticesByCategory,
+  getByCategoryAndTitle,
+} = require('../../controllers');
 
 const validatePost = validateBody(validateNotice);
 
