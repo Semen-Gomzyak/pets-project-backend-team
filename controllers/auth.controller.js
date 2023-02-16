@@ -68,7 +68,7 @@ async function register(req, res, next) {
 // ====== LOGIN USER =======
 
 async function login(req, res, next) {
-  const { name, email, password, cityRegion, birthday, mobilePhone } = req.body;
+  const { email, password } = req.body;
 
   const storedUser = await User.findOne({
     email,

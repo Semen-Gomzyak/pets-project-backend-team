@@ -23,6 +23,4 @@ usersRouter.post('/avatars', auth, tryCatchWrapper(updateAvatar));
 usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
 usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
 
-module.exports = {
-    usersRouter,
-};
+module.exports = usersRouter;
