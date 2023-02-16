@@ -43,19 +43,28 @@ async function noticeInfo (req, res, next) {
 // 18 - створити ендпоінт для додавання оголошення до обраних
 
 async function updateFavoriteNotice(req, res, next) {
-  const { _id } = req.body;
-  const currentUser = await Users.findById(_id);
-  const { noticeId } = req.params;
-  const currentNotice = await Notices.findById(noticeId);
 
-  currentUser.favoriteNotices.push(noticeId);
+  const { userId, noticeId } = req.params;
+  const currentUser = await Users.findById(userId);
+  const currentNotice = await Notices.findById(noticeId);
+  const favorites = currentUser.favoriteNotices
+  const index = favorites.indexOf(noticeId);
+
+if (index === -1) {
+  favorites.push(noticeId)
+
   await Users.findByIdAndUpdate(
     currentUser._id,
     { favoriteNotices: currentUser.favoriteNotices },
     { new: true },
-  );
-
-  return res.status(200).json({ message: `notice ${currentNotice.name} add to favorite` });
+    )
+return res.status(200).json({ message: `notice ${currentNotice.name} add to favorite` });
+  }
+else {
+  return res
+    .status(200)
+    .json({ message: "This notice has already been added to favorite" });
+}
 }
 
 // 19 - створити ендпоінт для отримання оголошень авторизованого користувача доданих ним же в обрані

@@ -11,7 +11,10 @@ const {
 
 noticesRouter.post('/', tryCatchWrapper(createNotice));
 noticesRouter.get('/:noticeId', tryCatchWrapper(noticeInfo));
-noticesRouter.patch('/:noticeId', tryCatchWrapper(updateFavoriteNotice));
+noticesRouter.patch(
+  '/:userId/favorite/:noticeId',
+  tryCatchWrapper(updateFavoriteNotice),
+);
 noticesRouter.get('/:userId/favorite', tryCatchWrapper(favoriteNotices));
 
 
