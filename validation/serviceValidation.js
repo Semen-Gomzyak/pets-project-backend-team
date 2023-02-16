@@ -9,4 +9,5 @@ const serviceValidate = Joi.object({
   imageUrl: Joi.string().min(2).max(128).required(),
 })
 
+
 module.exports = serviceValidate;

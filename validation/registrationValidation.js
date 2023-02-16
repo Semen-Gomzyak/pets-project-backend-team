@@ -12,6 +12,6 @@ const validateRegistration = Joi.object({
   mobilePhone: Joi.string()
     .regex(/^\+380\d{9}$/)
     .required(),
-})
+});
 
 module.exports = validateRegistration;
