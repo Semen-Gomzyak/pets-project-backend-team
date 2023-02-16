@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 const moment = require('moment');
 
 const petValidation = Joi.object({
@@ -9,6 +9,6 @@ const petValidation = Joi.object({
     .required(),
   breed: Joi.string().alphanum().min(2).max(16).required(),
   comments: Joi.string().min(8).max(120).required(),
-})
+});
 
 module.exports = petValidation;

@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const validateRegistration = Joi.object({
   email: Joi.string().email().required(),
@@ -12,6 +12,6 @@ const validateRegistration = Joi.object({
   mobilePhone: Joi.string()
     .regex(/^\+380\d{9}$/)
     .required(),
-})
+});
 
 module.exports = validateRegistration;

@@ -1,4 +1,4 @@
-const { News } = require('../../models/news');
+const { News } = require('../../models');
 const { HttpError } = require('../../middlwares/index');
 
 const getNews = async (req, res) => {
