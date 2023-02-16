@@ -1,9 +1,8 @@
 const express = require('express');
-const router = express.Router();
-
 const { tryCatchWrapper } = require('../../middlwares');
-
 const { getServices } = require('../../controllers/services');
+
+const router = express.Router();
 
 router.get("/", tryCatchWrapper(getServices));
 

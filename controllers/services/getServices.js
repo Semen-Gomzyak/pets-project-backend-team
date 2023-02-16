@@ -1,5 +1,4 @@
 const { Service } = require('../../models/service');
-
 const NewError = require('http-errors');
 
 const getServices = async (req, res) => {
