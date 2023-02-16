@@ -1,15 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
 
-const { tryCatchWrapper, validateBody } = require('../../middlwares');
-const { serviceValidate } = require('../../validation');
+const { validateRegistration, loginValidation } = require('../../validation');
+const validateBody = require('../../middlwares/ValidateBody');
+const auth = require('../../middlwares/auth');
 
-const { updateUser } = require('../../controllers/users');
+const {
+  userRegistration,
+  userLogin,
+  getUserById,
+} = require('../../controllers/users');
 
-router.patch(
-  '/:properties',
-  validateBody(serviceValidate),
-  tryCatchWrapper(updateUser),
+router.post(
+  '/register',
+  validateBody(validateRegistration),
+  tryCatchWrapper(userRegistration),
 );
+router.get('/login', validateBody(loginValidation), tryCatchWrapper(userLogin));
+router.get('/:userId', auth, tryCatchWrapper(getUserById));
+
 
 module.exports = router;

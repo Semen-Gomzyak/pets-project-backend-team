@@ -1,3 +1,10 @@
-const updateUser = require('./updateUser');
+const userRegistration = require('./userRegistration');
+const userLogin = require('./userLogin.js');
+const getUserById = require('./getUserById');
 
-module.exports = { updateUser };
+module.exports = {
+  userRegistration,
+  userLogin,
+  getUserById,
+};
+
