@@ -6,12 +6,14 @@ const getByCategoryAndTitle = async (req, res) => {
     const { page = 1, limit = 8 } = req.query;
     const skip = (page - 1) * limit;
     const notices = await Notice.find(category, '', {
-        skip,
-        limit: Number(limit)
+      skip,
+      limit: Number(limit)
     }).populate('category');
-    const filteredNotices = await notices.filter((notice) => notice.title.includes(title));
+    const filteredNotices = await notices.filter(notice =>
+      notice.title.includes(title),
+    );
     if (!filteredNotices) {
-        throw new NotFound('Not found')
+      throw new NotFound('Not found');
     }
     res.status(404).json(filteredNotices);
 };
