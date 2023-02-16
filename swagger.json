@@ -112,7 +112,7 @@
     },
 
     "/users/login": {
-      "get": {
+      "post": {
         "tags": ["Users"],
         "summary": "Login user",
         "description": "API endpoint for login user",
@@ -270,7 +270,7 @@
           },
           "cityRegion": {
             "type": "string",
-            "description": "User name or nicname",
+            "description": "City and region where user is located",
             "example": "Lviv, Ukraine"
           },
           "mobilePhone": {
@@ -282,7 +282,42 @@
         "required": ["email", "password", "name", "cityRegion", "mobilePhone"]
       },
 
-      "RegistrationResponse": {},
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Any valid email",
+            "example": "example@email.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "User name or nicname",
+            "example": "Ivan Petrenko"
+          },
+          "cityRegion": {
+            "type": "string",
+            "description": "City and region where user is located",
+            "example": "Lviv, Ukraine"
+          },
+          "mobilePhone": {
+            "type": "string",
+            "description": "Ukrainian cell phone number in international format",
+            "example": "+380671111111"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "Url to user avatart",
+            "example": "https://i.ibb.co/ftynhJR/avatar1.jpg1"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "Date of birth",
+            "example": "11.11.2000"
+          }
+        }
+      },
 
       "LoginRequest": {
         "type": "object",

@@ -23,7 +23,6 @@ async function userRegistration(req, res, next) {
     });
 
     const responce = {
-      message: 'Registration succesfull',
       email,
       name,
       cityRegion,

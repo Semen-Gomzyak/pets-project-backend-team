@@ -22,7 +22,11 @@ router.post(
   validateBody(validateRegistration),
   tryCatchWrapper(userRegistration),
 );
-router.get('/login', validateBody(loginValidation), tryCatchWrapper(userLogin));
+router.post(
+  '/login',
+  validateBody(loginValidation),
+  tryCatchWrapper(userLogin),
+);
 router.get('/:userId', auth, tryCatchWrapper(getUserById));
 router.patch(
   '/:properties',
