@@ -13,7 +13,7 @@ const noticeSchema = mongoose.Schema(
     },
     birthdate: {
       type: Date,
-      required: true,
+      required: false,
     },
     breed: {
       type: String,
@@ -21,6 +21,10 @@ const noticeSchema = mongoose.Schema(
     location: {
       type: String,
       required: true,
+    },
+    theSex: {
+      type: String,
+      enum: ['male', 'female'],
     },
     comments: {
       type: String,
@@ -32,7 +36,7 @@ const noticeSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ["lost/found", "in good hands", "sell"]
+      enum: ['lost/found', 'in good hands', 'sell'],
     },
     favorite: {
       type: Boolean,
@@ -45,7 +49,7 @@ const noticeSchema = mongoose.Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'user',
-      required: true,
+      required: false,
     },
   },
   {
