@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 const moment = require('moment');
 
 const petValidation = Joi.object({

@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const validateNotice = Joi.object({
   title: Joi.string().min(2).max(48).required(),
