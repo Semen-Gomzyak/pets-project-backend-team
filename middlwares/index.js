@@ -3,7 +3,11 @@ const HttpError = require('./HttpError');
 const validateBody = require('./ValidateBody');
 const removePngOrJpgFromString = require('./removePngOrJpgFromString');
 const tryCatchWrapper = require('./tryCatchWrapper');
+
 const sendMail = require('./sendMail');
+
+const uploadImg = require("./uploadImg")
+
 
 module.exports = {
   auth,
@@ -11,5 +15,8 @@ module.exports = {
   validateBody,
   removePngOrJpgFromString,
   tryCatchWrapper,
+
   sendMail,
-};
+
+  uploadImg
+
