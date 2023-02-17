@@ -36,4 +36,18 @@ router.patch(
   tryCatchWrapper(updateUser),
 );
 
+router.get(
+  '/google/',
+  auth,
+  validateBody(updateUserValidate),
+  tryCatchWrapper(updateUser),
+);
+
+router.get(
+  '/google-redirect/',
+  auth,
+  validateBody(updateUserValidate),
+  tryCatchWrapper(updateUser),
+);
+
 module.exports = router;
