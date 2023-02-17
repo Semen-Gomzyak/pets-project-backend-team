@@ -13,7 +13,7 @@ const noticeSchema = mongoose.Schema(
     },
     birthdate: {
       type: Date,
-      required: false,
+      required: [true, 'valid format date : mm.dd.yyyy'],
     },
     breed: {
       type: String,
@@ -25,6 +25,7 @@ const noticeSchema = mongoose.Schema(
     theSex: {
       type: String,
       enum: ['male', 'female'],
+      required: true,
     },
     comments: {
       type: String,
