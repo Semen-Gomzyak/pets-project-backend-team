@@ -338,6 +338,57 @@
           }
         }
       }
+    },
+    "/news": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get a list of news",
+        "description": "API endpoint for get a list of news",
+
+        "parameters": [],
+
+        "requestBody": {
+          "description": "News information for creating list of news. Available pagination  (default {page = 1, limit = 6})",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/News"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Get All News ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/News"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not found error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
@@ -481,6 +532,49 @@
             "example": "https://i.ibb.co/ftynhJR/avatar1.jpg"
           }
         }
+      },
+      "News": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["title", "url", "description", "date"],
+          "properties": {
+            "title": {
+              "type": "string",
+              "required": true,
+              "example": "Для українських власників тварин запустили платформу з безкоштовними онлайн-консультаціями"
+            },
+            "url": {
+              "type": "string",
+              "required": true,
+              "example": "https://ukr.media/animals/446084/"
+            },
+            "description": {
+              "type": "string",
+              "required": true,
+              "example": "У 2019 році жителі Берлінгтона (Вермонт, США) взяли в свій будинок пса на прізвисько Блейз, але не все пішло гладко, інформує Ukr.Media. З'ясувалося,..."
+            },
+            "date": {
+              "type": "string",
+              "required": true,
+              "example": "2022-08-12T00:00:00.000Z"
+            }
+          }
+        },
+        "example": [
+          {
+            "title": "Для українських власників тварин онлайн-консультаціями",
+            "url": "https://tsn.ua/ukrayina/zapustili-platformu-z-bezkoshtovnimi-onlayn-konsultaciyami-2058415.html",
+            "description": "В Україні запустили платформу Animal Help Ukraine......",
+            "date": "2022-05-10T00:00:00.000Z"
+          },
+          {
+            "title": "Для українських власників тварин онлайн-консультаціями",
+            "url": "https://tsn.ua/ukrayina/zapustili-platformu-z-bezkoshtovnimi-onlayn-konsultaciyami-2058415.html",
+            "description": "В Україні запустили платформу Animal Help Ukraine......",
+            "date": "2022-05-10T00:00:00.000Z"
+          }
+        ]
       }
     }
   }
