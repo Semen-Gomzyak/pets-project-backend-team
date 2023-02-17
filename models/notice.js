@@ -36,7 +36,7 @@ const noticeSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['lost/found', 'in good hands', 'sell'],
+      enum: ['lost_found', 'in good hands', 'sell'],
     },
     favorite: {
       type: Boolean,
