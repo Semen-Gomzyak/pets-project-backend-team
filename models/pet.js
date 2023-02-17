@@ -27,9 +27,9 @@ const petSchema = mongoose.Schema(
       type: String,
       default: null,
     },
-    seks:{
-        type: String,
-        enum: ["male", "female"]
+    seks: {
+      type: String,
+      enum: ['male', 'female'],
     },
     owner: {
       type: Schema.Types.ObjectId,
