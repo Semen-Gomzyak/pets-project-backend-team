@@ -9,6 +9,7 @@ const validateNotice = Joi.object({
   theSex: Joi.string().required(),
   comments: Joi.string().min(8).max(120).required(),
   price: Joi.number().positive().required(),
+  category: Joi.string()
 });
 
 module.exports = validateNotice;
