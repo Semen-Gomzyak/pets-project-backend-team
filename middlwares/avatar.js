@@ -21,6 +21,7 @@ const upload = multer({
 
 const avatarResize = async fileName => {
   const avatar = await Jimp.read(`${tempDir}/${fileName}`);
+
   avatar.resize(233, 233);
 
   return avatar;

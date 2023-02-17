@@ -1,7 +1,7 @@
 function HttpError(status, message) {
-    const err = new Error(message);
-    err.status = status;
-    return err;
-  }
+  const err = new Error(message);
+  err.status = status;
+  return err;
+}
 
-  module.exports = HttpError
+module.exports = HttpError;

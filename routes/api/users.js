@@ -13,6 +13,22 @@ const {
   repeatVerifyEmail,
 } = require('../../controllers/auth.controller');
 
+const {
+  userRegistration,
+  userLogin,
+  getUserById,
+  updateUser,
+} = require('../../controllers/users');
+
+const {
+  validateRegistration,
+  loginValidation,
+  updateUserValidate,
+} = require('../../validation');
+const validateBody = require('../../middlwares/ValidateBody');
+const auth = require('../../middlwares/auth');
+
+
 const usersRouter = express.Router();
 
 usersRouter.post('/register', tryCatchWrapper(register));
@@ -24,6 +40,29 @@ usersRouter.post('/avatars', auth, upload.single('avatar'), tryCatchWrapper(upda
 usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
 usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
 
+<<<<<<< HEAD
 
 
 module.exports = usersRouter;
+=======
+usersRouter.post(
+  '/register',
+  validateBody(validateRegistration),
+  tryCatchWrapper(userRegistration),
+);
+usersRouter.post(
+  '/login',
+  validateBody(loginValidation),
+  tryCatchWrapper(userLogin),
+);
+usersRouter.get('/userinfo/:userId', auth, tryCatchWrapper(getUserById));
+
+usersRouter.patch(
+  '/userupdate/:userId',
+  auth,
+  validateBody(updateUserValidate),
+  tryCatchWrapper(updateUser),
+);
+
+module.exports = usersRouter;
+>>>>>>> ac1d96dc30a15c481159935f0787a219df096ed1
