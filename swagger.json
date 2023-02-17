@@ -62,13 +62,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "User successfully created"
-                    }
-                  }
+                  "$ref": "#/components/schemas/UserInfo"
                 }
               }
             }
@@ -112,7 +106,7 @@
     },
 
     "/users/login": {
-      "get": {
+      "post": {
         "tags": ["Users"],
         "summary": "Login user",
         "description": "API endpoint for login user",
@@ -180,7 +174,7 @@
       }
     },
 
-    "/users/:userId": {
+    "/users/userinfo/:userId": {
       "get": {
         "tags": ["Users"],
         "summary": "Getting user info",
@@ -204,6 +198,106 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Invalid id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "id is not valid"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Authorization error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not authorize to get another user data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User < user ID > not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/users/userupdate/:userId": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Updating user info",
+        "description": "API endpoint for udating user information",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string",
+            "description": "Valid mongo DB id",
+            "example": "63ee26069ac5b92d9b405c03"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "User information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Invalid id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "id is not valid"
+                    }
+                  }
                 }
               }
             }
@@ -270,7 +364,7 @@
           },
           "cityRegion": {
             "type": "string",
-            "description": "User name or nicname",
+            "description": "City and region where user is located",
             "example": "Lviv, Ukraine"
           },
           "mobilePhone": {
@@ -282,7 +376,42 @@
         "required": ["email", "password", "name", "cityRegion", "mobilePhone"]
       },
 
-      "RegistrationResponse": {},
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Any valid email",
+            "example": "example@email.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "User name or nicname",
+            "example": "Ivan Petrenko"
+          },
+          "cityRegion": {
+            "type": "string",
+            "description": "City and region where user is located",
+            "example": "Lviv, Ukraine"
+          },
+          "mobilePhone": {
+            "type": "string",
+            "description": "Ukrainian cell phone number in international format",
+            "example": "+380671111111"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "Url to user avatart",
+            "example": "https://i.ibb.co/ftynhJR/avatar1.jpg1"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "Date of birth",
+            "example": "11.11.2000"
+          }
+        }
+      },
 
       "LoginRequest": {
         "type": "object",

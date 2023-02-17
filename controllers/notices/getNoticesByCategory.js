@@ -4,7 +4,7 @@ const getNoticesByCategory = async (req, res) => {
     const { category } = req.params;
     const { page = 1, limit = 8 } = req.query;
     const skip = (page - 1) * limit;
-    const notices = await Notice.find(category, '', {
+    const notices = await Notice.find({category}, '', {
         skip,
         limit: Number(limit)
     }).populate('category');

@@ -2,16 +2,25 @@ const User = require('../../models/user');
 const HttpError = require('../../middlwares/HttpError');
 
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
-const { verificationToken } = process.env;
+const { verificationToken, REFRESH_SECRET } = process.env;
 
 async function userRegistration(req, res, next) {
   const { email, password, name, cityRegion, mobilePhone } = req.body;
 
   try {
+    const storedUser = await User.findOne({ email });
+    if (storedUser) {
+      throw HttpError(409, 'Email in use');
+    }
+    const payload = { id: storedUser._id };
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
+    const refreshToken = jwt.sign(payload, REFRESH_SECRET, {
+      expiresIn: '30d',
+    });
 
     const createdUser = await User.create({
       email,
@@ -20,10 +29,10 @@ async function userRegistration(req, res, next) {
       mobilePhone,
       cityRegion,
       verificationToken,
+      refreshToken,
     });
 
     const responce = {
-      message: 'Registration succesfull',
       email,
       name,
       cityRegion,

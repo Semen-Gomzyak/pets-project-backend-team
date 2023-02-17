@@ -1,7 +1,12 @@
 const express = require('express');
+const validateBody = require('../../middlwares/ValidateBody');
+const validateNotice = require('../../validation/noticeValidation');
 
-const noticesRouter = express.Router();
-const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
+const {
+  addNotice,
+  getNoticesByCategory,
+  getByCategoryAndTitle,
+} = require('../../controllers/notices');
 
 const {
   createNotice,
@@ -9,6 +14,12 @@ const {
   updateFavoriteNotice,
   favoriteNotices,
 } = require('../../controllers/notices/notices.controller');
+
+const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
+
+const noticesRouter = express.Router();
+
+const validatePost = validateBody(validateNotice);
 
 noticesRouter.post('/', tryCatchWrapper(createNotice));
 noticesRouter.get('/:noticeId', tryCatchWrapper(noticeInfo));
@@ -31,6 +42,7 @@ const {
 
 const validatePost = validateBody(validateNotice);
 
+
 noticesRouter.post(
   '/category/:category',
   validatePost,
@@ -38,6 +50,5 @@ noticesRouter.post(
 );
 noticesRouter.get('/category/:category', tryCatchWrapper(getNoticesByCategory));
 noticesRouter.get('/:category/:title', tryCatchWrapper(getByCategoryAndTitle));
-
 
 module.exports = noticesRouter;
