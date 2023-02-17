@@ -5,15 +5,15 @@ const noticeSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     birthdate: {
       type: Date,
-      required: [true, 'valid format date : mm.dd.yyyy'],
+      required: [false, 'valid format date : mm.dd.yyyy'],
     },
     breed: {
       type: String,
@@ -25,24 +25,25 @@ const noticeSchema = mongoose.Schema(
     theSex: {
       type: String,
       enum: ['male', 'female'],
-      required: true,
+      required: false,
     },
     comments: {
       type: String,
-      required: true,
+      required: false,
     },
     price: {
       type: Number,
-      required: true,
+      required: false, // for category "in good hands" and "'lost_found'" - no price
     },
     category: {
       type: String,
       enum: ['lost_found', 'in good hands', 'sell'],
+      default: 'lost_found',
     },
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
+    // favorite: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     avatarURL: {
       type: String,
       default: null,
@@ -50,7 +51,7 @@ const noticeSchema = mongoose.Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'user',
-      required: false,
+      // required: true,
     },
   },
   {

@@ -9,6 +9,7 @@ const {
   getNoticeById,
   addOrRemoveFavoriteNotice,
   getFavoriteNotices,
+  getUserNotices,
 } = require('../../controllers/notices');
 
 const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
@@ -35,5 +36,7 @@ noticesRouter.patch(
 noticesRouter.get('/:userId/favorite', tryCatchWrapper(getFavoriteNotices));
 
 noticesRouter.get('/:category/:title', tryCatchWrapper(getByCategoryAndTitle));
+
+noticesRouter.get('/', tryCatchWrapper(getUserNotices));
 
 module.exports = noticesRouter;
