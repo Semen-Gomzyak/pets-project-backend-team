@@ -6,20 +6,16 @@ const newsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    text: {
+    url: {
+      type: String,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },
     date: {
       type: Date,
-      required: true,
-    },
-    author: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
       required: true,
     },
   },
