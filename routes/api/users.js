@@ -1,6 +1,24 @@
 const express = require('express');
-const router = express.Router();
 const { tryCatchWrapper } = require('../../middlwares');
+const { auth } = require('../../middlwares');
+const { upload, avatarResize} = require("../../middlwares/avatar");
+const {
+  register,
+  login,
+  logout,
+  updateAllData,
+  getCurrentUser,
+  updateAvatar,
+  verifyEmail,
+  repeatVerifyEmail,
+} = require('../../controllers/auth.controller');
+
+const {
+  userRegistration,
+  userLogin,
+  getUserById,
+  updateUser,
+} = require('../../controllers/users');
 
 const {
   validateRegistration,
@@ -10,30 +28,35 @@ const {
 const validateBody = require('../../middlwares/ValidateBody');
 const auth = require('../../middlwares/auth');
 
-const {
-  userRegistration,
-  userLogin,
-  getUserById,
-  updateUser,
-} = require('../../controllers/users');
 
-router.post(
+const usersRouter = express.Router();
+
+usersRouter.post('/register', tryCatchWrapper(register));
+usersRouter.post('/login', tryCatchWrapper(login));
+usersRouter.post('/logout', tryCatchWrapper(logout));
+usersRouter.put('/update', auth, tryCatchWrapper(updateAllData));
+usersRouter.get('/current', auth, tryCatchWrapper(getCurrentUser));
+usersRouter.post('/avatars', auth, upload.single('avatar'), avatarResize(), tryCatchWrapper(updateAvatar));
+usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
+usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
+
+usersRouter.post(
   '/register',
   validateBody(validateRegistration),
   tryCatchWrapper(userRegistration),
 );
-router.post(
+usersRouter.post(
   '/login',
   validateBody(loginValidation),
   tryCatchWrapper(userLogin),
 );
-router.get('/userinfo/:userId', auth, tryCatchWrapper(getUserById));
+usersRouter.get('/userinfo/:userId', auth, tryCatchWrapper(getUserById));
 
-router.patch(
+usersRouter.patch(
   '/userupdate/:userId',
   auth,
   validateBody(updateUserValidate),
   tryCatchWrapper(updateUser),
 );
 
-module.exports = router;
+module.exports = usersRouter;

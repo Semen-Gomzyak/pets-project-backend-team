@@ -26,7 +26,11 @@ app.use('/api/users', usersRouter);
 app.use('/api/notices', noticesRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/services', servicesRouter);
+
 app.use('/api/auth', authRouter);
+
+app.use('/public/avatars', express.static('public/avatars'));
+
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
