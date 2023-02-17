@@ -19,6 +19,10 @@ const getByCategoryAndTitle = async (req, res) => {
     throw new NotFound('Not found');
   }
   res.status(404).json(filteredNotices);
+
+    
+    
+
 };
 
 module.exports = getByCategoryAndTitle;
