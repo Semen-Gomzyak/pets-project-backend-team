@@ -16,13 +16,7 @@ module.exports = {
   validateBody,
   removePngOrJpgFromString,
   tryCatchWrapper,
-
+  uploadImg,
   sendMail,
-<<<<<<< HEAD
   updateCloudinaryAvatar,
 };
-=======
-
-  uploadImg
-
->>>>>>> ac1d96dc30a15c481159935f0787a219df096ed1
