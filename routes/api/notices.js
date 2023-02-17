@@ -18,7 +18,6 @@ const noticesRouter = express.Router();
 
 const validatePost = validateBody(validateNotice);
 
-const validatePost = validateBody(validateNotice);
 noticesRouter.post(
   '/category/:category',
   validatePost,
