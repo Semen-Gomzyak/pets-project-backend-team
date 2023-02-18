@@ -1,6 +1,6 @@
 const express = require('express');
 const validateBody = require('../../middlwares/ValidateBody');
-const validateNotice = require('../../validation/noticeValidation');
+const validateNotice = require('../../validation');
 
 const {
   addNotice,

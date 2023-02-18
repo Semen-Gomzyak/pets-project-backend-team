@@ -1,12 +1,13 @@
 const { User } = require('../models');
 const { sendMail } = require('../middlwares');
+const { updateCloudinaryAvatar } = require("../middlwares");
 
 
 const gravatar = require('gravatar');
 const { Conflict, Unauthorized, NotFound } = require('http-errors');
-const path = require('path');
-const fs = require('fs/promises');
-const Jimp = require('jimp');
+// const path = require('path');
+// const fs = require('fs/promises');
+// const Jimp = require('jimp');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { v4 } = require('uuid');
@@ -134,39 +135,19 @@ async function getCurrentUser(req, res, next) {
 
 // ====== UPDATE AVATAR USER  =======
 
-async function updateAvatar(req, res, next) {
-  const { id } = req.user;
-  const { filename } = req.file;
-  const tmpPath = path.resolve(__dirname, '../tpm', filename);
-  const publicPath = path.resolve(__dirname, '../public/avatars', filename);
+async function updateAvatar(req, res) {
 
-  await Jimp.read(tmpPath)
-    .then((image) => {
-      return image.resize(233, 233).write(tmpPath);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  const userId = req.params.userId;
+const avatarURL = await updateCloudinaryAvatar(req);
 
-  try {
-    await fs.rename(tmpPath, publicPath);
-  } catch (error) {
-    await fs.unlink(tmpPath);
-    return error;
-  }
+await User.findByIdAndUpdate(userId,{ avatarURL });
 
-  const upUser = await User.findByIdAndUpdate(
-    id,
-    {
-      avatarURL: `/public/avatars/${filename}`,
-    },
-    {
-      new: true,
-    }
-  );
-  console.log('upUser', upUser);
+res.status(200).json({
+  id: userId,
+  avatarURL,
+})
+
 }
-
 // ====== UPDATE ALL DATA OF USER  =======
 
 async function updateAllData(req, res, next) {
@@ -259,7 +240,6 @@ async function repeatVerifyEmail(req, res, next) {
 }
 
 
-
 module.exports = {
   register,
   login,
@@ -269,5 +249,4 @@ module.exports = {
   updateAllData,
   verifyEmail,
   repeatVerifyEmail,
-
 };
