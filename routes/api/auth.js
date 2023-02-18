@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { tryCatchWrapper } = require('../../middlwares');
-const { passport, google } = require('../../controllers/auth');
+const { passport, google, refreshToken } = require('../../controllers/auth');
 
 router.get(
   '/google',
@@ -18,4 +18,6 @@ router.get(
   google,
 );
 
-module.exports = router; 
+router.post('/token', tryCatchWrapper(refreshToken));
+
+module.exports = router;
