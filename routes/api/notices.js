@@ -3,6 +3,7 @@ const validateBody = require('../../middlwares/ValidateBody');
 const {validateNotice, updateValidateNotice} = require('../../validation');
 const { auth } = require('../../middlwares');
 
+
 const {
   addNotice,
   getNoticesByCategory,
@@ -44,6 +45,8 @@ noticesRouter.get('/:category/:title', tryCatchWrapper(getByCategoryAndTitle));
 
 noticesRouter.get('/', tryCatchWrapper(getUserNotices));
 
+
 noticesRouter.delete('/:noticeId', tryCatchWrapper(deleteUserNotice));
 
 module.exports = noticesRouter;
+
