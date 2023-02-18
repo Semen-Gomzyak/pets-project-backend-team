@@ -12,14 +12,16 @@ const {
   updateAvatar,
   verifyEmail,
   repeatVerifyEmail,
+<<<<<<< Updated upstream
 } = require('../../controllers/auth.controller');
 
 const {
+=======
+>>>>>>> Stashed changes
   userRegistration,
   userLogin,
   getUserInfo,
-  updateUser,
-} = require('../../controllers/users');
+} = require('../../controllers/auth.controller');
 
 const {
   validateRegistration,
@@ -53,10 +55,14 @@ usersRouter.post(
   tryCatchWrapper(userLogin),
 );
 usersRouter.get('/userinfo/:userId', auth, tryCatchWrapper(getUserInfo));
+<<<<<<< Updated upstream
 usersRouter.patch(
   '/userinfo/:userId',
   validateBody(updateUserValidate),
   tryCatchWrapper(updateUser),
 );
+=======
+usersRouter.get('/userinfo', auth, tryCatchWrapper(getUserInfo));
+>>>>>>> Stashed changes
 
 module.exports = usersRouter;
