@@ -23,7 +23,8 @@ noticesRouter.post(
   validatePost,
   tryCatchWrapper(addNotice),
 );
-noticesRouter.post('/', tryCatchWrapper(createNotice));
+
+noticesRouter.post('/', tryCatchWrapper(addNotice));
 noticesRouter.get('/category/:category', tryCatchWrapper(getNoticesByCategory));
 
 noticesRouter.get('/:noticeId', tryCatchWrapper(getNoticeById));

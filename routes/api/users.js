@@ -1,7 +1,8 @@
 const express = require('express');
+const usersRouter = express.Router();
 const { tryCatchWrapper } = require('../../middlwares');
 const { auth } = require('../../middlwares');
-const { upload, avatarResize} = require("../../middlwares/avatar");
+const { upload, avatarResize } = require('../../middlwares/avatar');
 const {
   register,
   login,
@@ -26,17 +27,19 @@ const {
   updateUserValidate,
 } = require('../../validation');
 const validateBody = require('../../middlwares/ValidateBody');
-const auth = require('../../middlwares/auth');
-
-
-const usersRouter = express.Router();
 
 usersRouter.post('/register', tryCatchWrapper(register));
 usersRouter.post('/login', tryCatchWrapper(login));
 usersRouter.post('/logout', tryCatchWrapper(logout));
 usersRouter.put('/update', auth, tryCatchWrapper(updateAllData));
 usersRouter.get('/current', auth, tryCatchWrapper(getCurrentUser));
-usersRouter.post('/avatars', auth, upload.single('avatar'), avatarResize(), tryCatchWrapper(updateAvatar));
+// usersRouter.post(
+//   '/avatars',
+//   auth,
+//   upload.single('avatar'),
+//   avatarResize(),
+//   tryCatchWrapper(updateAvatar),
+// );
 usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
 usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
 
