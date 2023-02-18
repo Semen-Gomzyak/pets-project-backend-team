@@ -6,12 +6,13 @@ const getServices = async (req, res) => {
     const skip = page * limit - limit;
 
     const services = await Service.find({}).skip(skip).limit(limit);
-
+    
     if (!services) {
         throw NewError(404, 'Services not found');
     }
 
-    res.status(200).json({ total: services.length, data: services });
+    const workDays = services.map(service => service.workDays);
+    res.status(200).json(workDays);
 };
 
 module.exports = getServices;
