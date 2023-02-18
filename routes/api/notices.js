@@ -2,6 +2,7 @@ const express = require('express');
 const validateBody = require('../../middlwares/ValidateBody');
 const validateNotice = require('../../validation');
 
+<<<<<<< Updated upstream
 const {
   addNotice,
   getNoticesByCategory,
@@ -11,6 +12,13 @@ const {
   getFavoriteNotices,
   getUserNotices,
 } = require('../../controllers/notices');
+=======
+// const {
+//   addNotice,
+//   getNoticesByCategory,
+//   getByCategoryAndTitle,
+// } = require('../../controllers/notices');
+>>>>>>> Stashed changes
 
 const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
 
@@ -18,6 +26,29 @@ const noticesRouter = express.Router();
 
 const validatePost = validateBody(validateNotice);
 
+<<<<<<< Updated upstream
+=======
+noticesRouter.post('/', tryCatchWrapper(createNotice));
+noticesRouter.get('/:noticeId', tryCatchWrapper(noticeInfo));
+noticesRouter.patch(
+  '/:userId/favorite/:noticeId',
+  tryCatchWrapper(updateFavoriteNotice),
+);
+noticesRouter.get('/:userId/favorite', tryCatchWrapper(favoriteNotices));
+
+// const validateBody = require('../../middlwares/ValidateBody');
+// const validateNotice = require('../../validation/noticeValidation');
+// const { notices: enpoint } = require('../../controllers')
+
+const {
+  addNotice,
+  getNoticesByCategory,
+  getByCategoryAndTitle,
+} = require('../../controllers');
+
+// const validatePost = validateBody(validateNotice);
+
+>>>>>>> Stashed changes
 noticesRouter.post(
   '/category/:category',
   validatePost,

@@ -17,5 +17,10 @@ module.exports = {
   tryCatchWrapper,
   uploadImg,
   sendMail,
+<<<<<<< Updated upstream
   updateCloudinaryAvatar,
+=======
+
+  uploadImg,
+>>>>>>> Stashed changes
 };
