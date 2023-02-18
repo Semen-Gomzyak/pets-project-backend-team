@@ -11,7 +11,7 @@ const getServices = async (req, res) => {
         throw NewError(404, 'Services not found');
     }
 
-    res.status(200).json(services);
+    res.status(200).json({ total: services.length, data: services });
 };
 
 module.exports = getServices;
