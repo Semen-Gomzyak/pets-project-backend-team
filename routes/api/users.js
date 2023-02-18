@@ -18,7 +18,8 @@ const {
   userRegistration,
   userLogin,
   getUserInfo,
-} = require('../../controllers/auth.controller');
+  updateUser,
+} = require('../../controllers/users');
 
 const {
   validateRegistration,
