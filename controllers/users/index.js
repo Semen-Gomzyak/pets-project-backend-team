@@ -6,11 +6,6 @@ const updateUser = require('./updateUser');
 module.exports = {
   userRegistration,
   userLogin,
-<<<<<<< Updated upstream
-  getUserById,
-  updateUser
-=======
   getUserInfo,
   updateUser,
->>>>>>> Stashed changes
 };
