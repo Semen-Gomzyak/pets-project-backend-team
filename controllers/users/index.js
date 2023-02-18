@@ -7,5 +7,5 @@ module.exports = {
   userRegistration,
   userLogin,
   getUserById,
-  updateUser,
+  updateUser
 };

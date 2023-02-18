@@ -12,6 +12,7 @@ const usersRouter = require('./routes/api/users');
 const noticesRouter = require('./routes/api/notices');
 const newsRouter = require('./routes/api/news');
 const servicesRouter = require('./routes/api/services');
+const authRouter = require('./routes/api/auth');
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
@@ -25,7 +26,11 @@ app.use('/api/users', usersRouter);
 app.use('/api/notices', noticesRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/services', servicesRouter);
+
+app.use('/api/auth', authRouter);
+
 app.use('/public/avatars', express.static('public/avatars'));
+
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

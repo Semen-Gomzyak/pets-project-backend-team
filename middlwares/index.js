@@ -7,8 +7,7 @@ const tryCatchWrapper = require('./tryCatchWrapper');
 const sendMail = require('./sendMail');
 const updateCloudinaryAvatar = require('./uploadMiddleware');
 
-const uploadImg = require("./uploadImg")
-
+const uploadImg = require('./uploadImg');
 
 module.exports = {
   auth,
