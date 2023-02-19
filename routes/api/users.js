@@ -1,11 +1,11 @@
 const express = require('express');
 const usersRouter = express.Router();
 const { tryCatchWrapper } = require('../../middlwares');
-const { auth } = require('../../middlwares');
+const { auth, validateBody } = require('../../middlwares');
 const { upload, avatarResize } = require('../../middlwares/avatar');
 const {
   register,
-  login,
+  //   login,
   logout,
   updateAllData,
   getCurrentUser,
@@ -17,7 +17,7 @@ const {
 const {
   userRegistration,
   userLogin,
-  getUserById,
+  getUserInfo,
   updateUser,
 } = require('../../controllers/users');
 
@@ -26,20 +26,19 @@ const {
   loginValidation,
   updateUserValidate,
 } = require('../../validation');
-const validateBody = require('../../middlwares/ValidateBody');
 
 usersRouter.post('/register', tryCatchWrapper(register));
-usersRouter.post('/login', tryCatchWrapper(login));
+// usersRouter.post('/login', tryCatchWrapper(login));
 usersRouter.post('/logout', tryCatchWrapper(logout));
 usersRouter.put('/update', auth, tryCatchWrapper(updateAllData));
 usersRouter.get('/current', auth, tryCatchWrapper(getCurrentUser));
-// usersRouter.post(
-//   '/avatars',
-//   auth,
-//   upload.single('avatar'),
-//   avatarResize(),
-//   tryCatchWrapper(updateAvatar),
-// );
+usersRouter.post(
+  '/avatars',
+  auth,
+  upload.single('avatar'),
+  avatarResize,
+  tryCatchWrapper(updateAvatar),
+);
 usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
 usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
 
@@ -53,11 +52,9 @@ usersRouter.post(
   validateBody(loginValidation),
   tryCatchWrapper(userLogin),
 );
-usersRouter.get('/userinfo/:userId', auth, tryCatchWrapper(getUserById));
-
+usersRouter.get('/userinfo/:userId', auth, tryCatchWrapper(getUserInfo));
 usersRouter.patch(
-  '/userupdate/:userId',
-  auth,
+  '/userinfo/:userId',
   validateBody(updateUserValidate),
   tryCatchWrapper(updateUser),
 );

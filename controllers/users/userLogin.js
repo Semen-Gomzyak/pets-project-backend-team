@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
-const { SECRET, REFRESH_SECRET } = process.env;
+const { SECRET } = process.env;
 
 async function userLogin(req, res, next) {
   try {
@@ -22,17 +22,14 @@ async function userLogin(req, res, next) {
 
     const payload = { id: storedUser._id };
     const token = jwt.sign(payload, SECRET, { expiresIn: '1h' });
-    const refreshToken = jwt.sign(payload, REFRESH_SECRET, {
-      expiresIn: '30d',
-    });
+
     await User.findByIdAndUpdate(storedUser._id, {
       token,
-      refreshToken,
     });
+
 
     const responseData = {
       token,
-      refreshToken,
       _id: storedUser._id,
     };
     res.status(200).json({ ...responseData });

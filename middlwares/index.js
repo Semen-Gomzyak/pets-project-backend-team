@@ -5,6 +5,7 @@ const removePngOrJpgFromString = require('./removePngOrJpgFromString');
 const tryCatchWrapper = require('./tryCatchWrapper');
 
 const sendMail = require('./sendMail');
+const updateCloudinaryAvatar = require('./uploadMiddleware');
 
 const uploadImg = require('./uploadImg');
 
@@ -14,8 +15,7 @@ module.exports = {
   validateBody,
   removePngOrJpgFromString,
   tryCatchWrapper,
-
-  sendMail,
-
   uploadImg,
+  sendMail,
+  updateCloudinaryAvatar,
 };
