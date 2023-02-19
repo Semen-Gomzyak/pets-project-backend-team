@@ -45,8 +45,6 @@ noticesRouter.get('/:category/:title', tryCatchWrapper(getByCategoryAndTitle));
 
 noticesRouter.get('/', tryCatchWrapper(getUserNotices));
 
-
 noticesRouter.delete('/:noticeId', tryCatchWrapper(deleteUserNotice));
 
 module.exports = noticesRouter;
-
