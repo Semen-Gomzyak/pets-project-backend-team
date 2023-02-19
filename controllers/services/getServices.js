@@ -6,12 +6,31 @@ const getServices = async (req, res) => {
     const skip = page * limit - limit;
 
     const services = await Service.find({}).skip(skip).limit(limit);
-
     if (!services) {
         throw NewError(404, 'Services not found');
     }
 
-    res.status(200).json({ total: services.length, data: services });
+    let mapped = services.map(service => {
+        if (service.workDays === null || service.workDays === undefined) {
+            return { ...service.toObject(), workDays: [] };
+        }
+
+        const mappedDays = service.workDays.map(workDay => {
+            let from = "";
+            let to = "";
+            if (workDay.from !== null && workDay.from !== undefined) {
+                from = workDay.from;
+            }
+            if (workDay.to !== null && workDay.to !== undefined) {
+                to = workDay.to;
+            }
+            return { ...workDay, from: from, to: to };
+        });
+
+        return { ...service.toObject(), workDays: mappedDays };
+    });
+
+    res.status(200).json({ total: mapped.length, data: mapped });
 };
 
 module.exports = getServices;
