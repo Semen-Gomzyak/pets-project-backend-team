@@ -6,7 +6,7 @@ const serviceSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-   workDays: {
+    workDays: {
       type: Array,
       default: null,
     },
@@ -26,7 +26,7 @@ const serviceSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-     },
+  },
   {
     timestamps: true,
     versionKey: false,

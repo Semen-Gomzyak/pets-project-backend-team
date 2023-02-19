@@ -40,10 +40,10 @@ const noticeSchema = mongoose.Schema(
       enum: ['lost_found', 'in good hands', 'sell'],
       default: 'lost_found',
     },
-    // favorite: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
     avatarURL: {
       type: String,
       default: null,
@@ -51,7 +51,7 @@ const noticeSchema = mongoose.Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'user',
-      // required: true,
+      required: true,
     },
   },
   {

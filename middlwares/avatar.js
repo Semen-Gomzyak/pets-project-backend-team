@@ -21,12 +21,10 @@ const upload = multer({
 
 const avatarResize = async fileName => {
   const avatar = await Jimp.read(`${tempDir}/${fileName}`);
-
-  avatar.resize(233, 233);
+  avatar.resize(250, 250);
 
   return avatar;
 };
-
 module.exports = {
   upload,
   avatarResize,

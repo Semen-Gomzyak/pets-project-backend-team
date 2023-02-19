@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const { EMAIL_PASS, EMAIL_USER } = process.env;
 
-
 async function sendMail({ to, html, subject }) {
   const email = {
     from: 'info@mycontacts.com',
@@ -20,7 +19,6 @@ async function sendMail({ to, html, subject }) {
   });
 
   await transport.sendMail(email);
-};
+}
 
 module.exports = sendMail;
-

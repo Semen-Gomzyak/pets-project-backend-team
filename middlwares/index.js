@@ -6,8 +6,7 @@ const tryCatchWrapper = require('./tryCatchWrapper');
 
 const sendMail = require('./sendMail');
 const updateCloudinaryAvatar = require('./uploadMiddleware');
-
-const uploadImg = require('./uploadImg');
+const upload = require('./avatar');
 
 module.exports = {
   auth,
@@ -15,7 +14,7 @@ module.exports = {
   validateBody,
   removePngOrJpgFromString,
   tryCatchWrapper,
-  uploadImg,
   sendMail,
   updateCloudinaryAvatar,
+  upload,
 };

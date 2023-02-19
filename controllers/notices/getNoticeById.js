@@ -1,12 +1,9 @@
-const Notices = require('../../models/notice');
+const { Notice } = require('../../models');
 
-
-// 17 - створити ендпоінт для отримання одного оголошення (незареэстрований юзер) - 1:42 
-
-async function getNoticeById(req, res, next) {
+const getNoticeById = async (req, res, next) => {
   const { noticeId } = req.params;
-  const currentNotice = await Notices.findById(noticeId);
+  const currentNotice = await Notice.findById(noticeId);
   return res.status(201).json(currentNotice);
-}
+};
 
 module.exports = getNoticeById;

@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken');
 const { SECRET } = process.env;
 
 const refreshToken = async (req, res) => {
-  const { email } = req.body;
-  const user = await User.findOne({ email });
+  const { id } = req.body;
+  const user = await User.findOne({ id });
 
   const payload = {
     id: user._id,
@@ -17,7 +17,7 @@ const refreshToken = async (req, res) => {
   await User.findByIdAndUpdate(user._id, { token: newToken });
   return res.status(200).json({
     token: newToken,
-    id: user._id
+    id: user._id,
   });
 };
 

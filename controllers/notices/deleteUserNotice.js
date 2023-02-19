@@ -1,17 +1,14 @@
-const Notices = require('../../models/notice');
+const { Notice } = require('../../models');
 
-
-// 23 - створити ендпоінт для видалення оголошення авторизованого користувача створеного цим же користувачем
-
-async function deleteUserNotice(req, res, next) {
+const deleteUserNotice = async (req, res, next) => {
   const { noticeId } = req.params;
-  const removedNotice = await Notices.findById(noticeId);
+  const removedNotice = await Notice.findById(noticeId);
   if (!removedNotice) {
     return res.status(404).json({ ok: 'not found' });
   }
 
-  await Notices.findByIdAndRemove(removedNotice);
-  return res.status(200).json({ ok: true });
-}
+  await Notice.findByIdAndRemove(removedNotice);
+  return res.status(200).json({ message: 'Notice deleted' });
+};
 
 module.exports = deleteUserNotice;

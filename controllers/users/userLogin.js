@@ -1,5 +1,5 @@
-const User = require('../../models/user');
-const HttpError = require('../../middlwares/HttpError');
+const { User } = require('../../models');
+const { HttpError } = require('../../middlwares');
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { SECRET } = process.env;
 
-async function userLogin(req, res, next) {
+const userLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const storedUser = await User.findOne({ email });
@@ -27,7 +27,6 @@ async function userLogin(req, res, next) {
       token,
     });
 
-
     const responseData = {
       token,
       _id: storedUser._id,
@@ -36,6 +35,6 @@ async function userLogin(req, res, next) {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = userLogin;
