@@ -30,7 +30,7 @@ const getServices = async (req, res) => {
         return { ...service.toObject(), workDays: mappedDays };
     });
 
-    res.status(200).json(mapped);
+    res.status(200).json({ total: mapped.length, data: mapped });
 };
 
 module.exports = getServices;
