@@ -27,6 +27,7 @@ async function userLogin(req, res, next) {
       token,
     });
 
+
     const responseData = {
       token,
       _id: storedUser._id,

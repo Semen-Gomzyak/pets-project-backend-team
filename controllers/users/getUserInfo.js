@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+const { User, Pet } = require('../../models');
 const idValidation = require('../../validation/idValidation');
 
 async function getUserById(req, res, next) {
@@ -13,7 +13,7 @@ async function getUserById(req, res, next) {
   }
 
   try {
-    const user = await User.findById(userId).select({
+    const userData = await User.findById(userId).select({
       _id: 0,
       name: 1,
       email: 1,
@@ -23,11 +23,16 @@ async function getUserById(req, res, next) {
       avatarURL: 1,
     });
 
-    if (!user) {
+    if (!userData) {
       return res.status(404).json({ message: `User <${userId}> not found` });
     }
 
-    res.status(200).json(user);
+    const userPets = await Pet.find(
+      { owner: userId },
+      { _id: 1, name: 1, date: 1, breed: 1, comments: 1, avatarURL: 1 },
+    );
+
+    res.status(200).json({ ...userData._doc, userPets });
   } catch (error) {
     next(error);
   }

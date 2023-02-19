@@ -27,10 +27,7 @@ const avatarResize = async fileName => {
   return avatar;
 };
 
-
 module.exports = {
   upload,
   avatarResize,
 };
-
-
