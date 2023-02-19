@@ -1,8 +1,7 @@
 const express = require('express');
 const validateBody = require('../../middlwares/ValidateBody');
-const {validateNotice, updateValidateNotice} = require('../../validation');
-const { auth } = require('../../middlwares');
-
+const { validateNotice } = require('../../validation');
+const { auth, tryCatchWrapper } = require('../../middlwares');
 
 const {
   addNotice,
@@ -15,35 +14,47 @@ const {
   deleteUserNotice,
 } = require('../../controllers/notices');
 
-const tryCatchWrapper = require('../../middlwares/tryCatchWrapper');
-
 const noticesRouter = express.Router();
-
-const validatePost = validateBody(validateNotice);
-const validatePatch = validateBody(updateValidateNotice);
 
 noticesRouter.post(
   '/category/:category',
-  validatePost,
+  auth,
+  validateBody(validateNotice),
   tryCatchWrapper(addNotice),
 );
 
-noticesRouter.post('/', validatePost, tryCatchWrapper(addNotice));
+/*
+Look after the fronend and delete one of the posts adding notes
+*/
+
+noticesRouter.post(
+  '/',
+  auth,
+  validateBody(validateNotice),
+  tryCatchWrapper(addNotice),
+);
 
 noticesRouter.get('/category/:category', tryCatchWrapper(getNoticesByCategory));
 
 noticesRouter.get('/:noticeId', tryCatchWrapper(getNoticeById));
 
 noticesRouter.patch(
-  '/:userId/favorite/:noticeId',
+  '/:userId/favorites/:noticeId',
+  auth,
   tryCatchWrapper(addOrRemoveFavoriteNotice),
 );
+noticesRouter.get(
+  '/:userId/favorites/',
+  auth,
+  tryCatchWrapper(getFavoriteNotices),
+);
 
-noticesRouter.get('/:userId/favorite', tryCatchWrapper(getFavoriteNotices));
+noticesRouter.get(
+  '/category/:category/:title',
+  tryCatchWrapper(getByCategoryAndTitle),
+);
 
-noticesRouter.get('/:category/:title', tryCatchWrapper(getByCategoryAndTitle));
-
-noticesRouter.get('/', tryCatchWrapper(getUserNotices));
+noticesRouter.get('/', auth, tryCatchWrapper(getUserNotices));
 
 noticesRouter.delete('/:noticeId', tryCatchWrapper(deleteUserNotice));
 

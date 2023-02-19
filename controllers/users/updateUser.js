@@ -1,30 +1,14 @@
 const { User } = require('../../models');
-const NewError = require('http-errors');
-const idValidation = require('../../validation/idValidation');
 
-const updateUser = async (req, res, next) => {
-  const { userId } = req.params;
-  idValidation(userId);
+const updateAllData = async (req, res, next) => {
+  const { id } = req.user;
 
-  const curentUserId = req.user._id;
-  if (!curentUserId.equals(userId)) {
-    return res
-      .status(401)
-      .json({ message: 'Not authorize to get another user data' });
-  }
+  const { name, email, cityRegion, mobilePhone, birthday } = req.body;
+  console.log('data: ', name, email, cityRegion, mobilePhone, birthday);
 
-  try {
-    const updatedUser = await User.findByIdAndUpdate(userId, req.body, {
-      new: true,
-    });
-    if (!updatedUser) {
-      throw NewError(404, 'User not found');
-    }
+  const upUser = await User.findByIdAndUpdate(id, req.body, { new: true });
 
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    next(error);
-  }
+  res.status(200).json(upUser);
 };
 
-module.exports = updateUser;
+module.exports = updateAllData;

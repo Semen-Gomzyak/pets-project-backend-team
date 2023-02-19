@@ -1,12 +1,12 @@
-const User = require('../../models/user');
-const HttpError = require('../../middlwares/HttpError');
+const { User } = require('../../models');
+const { HttpError, updateCloudinaryAvatar } = require('../../middlwares');
 
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 dotenv.config();
 const { verificationToken } = process.env;
 
-async function userRegistration(req, res, next) {
+const userRegistration = async (req, res, next) => {
   const { email, password, name, cityRegion, mobilePhone } = req.body;
 
   try {
@@ -16,6 +16,7 @@ async function userRegistration(req, res, next) {
     }
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
+    const avatarURL = await updateCloudinaryAvatar(req, res);
 
     const createdUser = await User.create({
       email,
@@ -24,6 +25,7 @@ async function userRegistration(req, res, next) {
       mobilePhone,
       cityRegion,
       verificationToken,
+      avatarURL,
     });
 
     const responce = {
@@ -31,7 +33,7 @@ async function userRegistration(req, res, next) {
       name,
       cityRegion,
       mobilePhone,
-      avatarURL: createdUser.avatarURL,
+      avatarURL: avatarURL,
       birthday: createdUser.birthday,
     };
 
@@ -42,6 +44,6 @@ async function userRegistration(req, res, next) {
     }
     next(error);
   }
-}
+};
 
 module.exports = userRegistration;

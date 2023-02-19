@@ -1,20 +1,12 @@
-const { HttpError } = require('../../middlwares');
 const { Pet } = require('../../models');
-const { petValidation } = require('../../validation');
-const uploudCloudinaryImg = require("../../helpers/uploadPetImgCloudinary")
+const { updateCloudinaryAvatar } = require('../../middlwares');
 
 const addPet = async (req, res) => {
-  const { error } = petValidation.validate(req.body);
-  if (error) {
-    throw HttpError(400, 'Bad request body');
-  }
-  
-  const { _id: owner } = req.user;
-  const petUrl = uploudCloudinaryImg(req)
+  const { _id } = req.user;
+  const imageUrl = await updateCloudinaryAvatar(req, res);
 
-  const result = await Pet.create({ ...req.body, owner, avatarURL:petUrl});
-
-  res.status(201).json(result);
+  const newPet = await Pet.create({ ...req.body, owner: _id, imageUrl });
+  return res.status(201).json(newPet);
 };
 
 module.exports = addPet;

@@ -1,7 +1,10 @@
-const removePngOrJpgFromString = string => {
-    const words = string.split('.');
-    words.pop();
-    return words.join('.');
-  };
+const dotenv = require('dotenv');
+dotenv.config();
 
-  module.exports = removePngOrJpgFromString
+const removePngOrJpgFromString = string => {
+  const words = string.split('.');
+  words.pop();
+  return words.join('.');
+};
+
+module.exports = removePngOrJpgFromString;
