@@ -3,15 +3,15 @@ const Notices = require('../../models/notice');
 
 // 22 - створити ендпоінт для отримання оголошень авторизованого кристувача створених цим же користувачем
 
-const getUserNotices = async (req, res) => {
-  // const { user } = req;
+const getUserNotices = async (req, res, next) => {
+  const { userId } = req.body; // must be auth user !!!!!!!!!!!!!!!!!!
+  console.log(userId);
   const { page = 1, limit = 8 } = req.query;
   const skip = (page - 1) * limit;
-  const myNotices = await Notices.find({ owner: '63ef819f5469acc4f39fa32d' })
-    .populate('owner', { name: 1 })
+  const myNotices = await Notices.find({ owner: userId })
     .skip(skip)
     .limit(limit);
-  console.log(myNotices);
+
   return res.json(myNotices);
 };
 

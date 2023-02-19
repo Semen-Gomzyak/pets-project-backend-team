@@ -5,6 +5,7 @@ const addOrRemoveFavoriteNotice = require('./addOrRemoveFavoriteNotice');
 const getFavoriteNotices = require('./getFavoriteNotices');
 const getNoticeById = require('./getNoticeById');
 const getUserNotices = require('./getUserNotices');
+const deleteUserNotice = require('./deleteUserNotice');
 
 module.exports = {
   addNotice,
@@ -14,4 +15,5 @@ module.exports = {
   getFavoriteNotices,
   getNoticeById,
   getUserNotices,
+  deleteUserNotice,
 };
