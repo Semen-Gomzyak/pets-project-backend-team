@@ -198,7 +198,7 @@
      "services": {
       "get": {
         "tags": ["Services-sidebar"],
-        "summary": "Our friends' info",
+        "summary": "Get our friends",
          "description": "API endpoint for our friends",
 
         "parameters": [],
