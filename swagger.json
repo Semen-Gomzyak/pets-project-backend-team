@@ -608,7 +608,7 @@
     "notices/:userId/favorites": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get user favorite list by id",
+        "summary": "Get user's favorite list by id",
         "description": "API endpoint for get favorite list by id ",
 
         "parameters": [
