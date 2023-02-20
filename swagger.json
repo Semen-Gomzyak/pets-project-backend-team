@@ -198,7 +198,7 @@
      "services": {
       "get": {
         "tags": ["Services-sidebar"],
-        "summary": "Get our friends",
+        "summary": "Getting our friends",
          "description": "API endpoint for our friends",
 
         "parameters": [],
@@ -250,8 +250,8 @@
     "news": {
       "get": {
         "tags": ["News"],
-        "summary": "Get a list of news",
-        "description": "API endpoint for get a list of news",
+        "summary": "Getting a list of news",
+        "description": "API endpoint for getting a list of news",
 
         "parameters": [],
 
@@ -302,8 +302,8 @@
     "notices": {
       "post": {
         "tags": ["Notices"],
-        "summary": "Add new notice",
-        "description": "API endpoint for add new notice",
+        "summary": "Adding new notice",
+        "description": "API endpoint for adding new notice",
 
         "parameters": [
           {
@@ -363,8 +363,8 @@
       },
       "get": {
         "tags": ["Notices"],
-        "summary": "Get notices",
-        "description": "API endpoint for get notices",
+        "summary": "Getting notices",
+        "description": "API endpoint for getting notices",
         
         "parameters": [
           {
@@ -426,8 +426,8 @@
     "notices/:noticeId": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get notice by id",
-        "description": "API endpoint for get notice by id",
+        "summary": "Getting notice by id",
+        "description": "API endpoint for getting notice by id",
 
         "parameters": [
           {
@@ -486,8 +486,8 @@
       },
       "delete": {
         "tags": ["Notices"],
-        "summary": "Delete notice by id",
-        "description": "API endpoint for delete notice by id",
+        "summary": "Deleting notice by id",
+        "description": "API endpoint for deleting notice by id",
         
         "parameters": [
           {
@@ -556,8 +556,8 @@
     "notices/category/:category": {
         "get": {
         "tags": ["Notices"],
-        "summary": "Get notices from the category and title",
-        "description": "API endpoint for get all notice ",
+        "summary": "Getting notices from the category and title",
+        "description": "API endpoint for getting all notice ",
 
         "parameters": [
           {
@@ -608,8 +608,8 @@
     "notices/:userId/favorites": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get user's favorite list by id",
-        "description": "API endpoint for get favorite list by id ",
+        "summary": "Getting user's favorite list by id",
+        "description": "API endpoint for getting favorite list by id ",
 
         "parameters": [
           {
@@ -656,8 +656,8 @@
     "notices/:userId/favorites/:noticeId": {
       "patch": {
         "tags": ["Notices"],
-        "summary": "Update notice in favorite list",
-        "description": "API endpoint for update notice in favorite list ",
+        "summary": "Updating notice in favorite list",
+        "description": "API endpoint for updating notice in favorite list ",
 
         "parameters": [
           {
@@ -712,8 +712,8 @@
     "pets": {
       "post": {
         "tags": ["Pets"],
-        "summary": "Add pets",
-        "description": "API endpoint for add pets ",
+        "summary": "Adding pets",
+        "description": "API endpoint for adding pets ",
 
         "parameters": [
           {
@@ -773,8 +773,8 @@
       },
       "get": {
         "tags": ["Pets"],
-        "summary": "Get pets",
-         "description": "API endpoint for get pets ",
+        "summary": "Getting pets",
+         "description": "API endpoint for getting pets ",
 
         "parameters": [
           {
@@ -820,8 +820,8 @@
     "pets/:petId": {
       "get": {
         "tags": ["Pets"],
-        "summary": "Get pet by id",
-         "description": "API endpoint for get pet by id ",
+        "summary": "Getting pet by id",
+         "description": "API endpoint for getting pet by id ",
 
         "parameters": [
           {
@@ -872,8 +872,8 @@
       },
       "delete": {
         "tags": ["Pets"],
-        "summary": "Delete pet",
-         "description": "API endpoint for delete pet ",
+        "summary": "Deleting pet",
+         "description": "API endpoint for deleting pet ",
 
         "parameters": [
           {
@@ -1280,8 +1280,8 @@
     "users/current": {
       "get": {
         "tags": ["User + Pets"],
-        "summary": "Get current user",
-         "description": "API endpoint for get current user",
+        "summary": "Getting current user",
+         "description": "API endpoint for getting current user",
 
         "parameters": [
           {
@@ -1327,8 +1327,8 @@
     "users/update": {
       "put": {
         "tags": ["User + Pets"],
-        "summary": "Update user",
-         "description": "API endpoint for update user",
+        "summary": "Updating user",
+         "description": "API endpoint for updating user",
 
         "parameters": [
           {
@@ -1385,8 +1385,8 @@
     "users/avatars": {
       "post": {
         "tags": ["User + Pets"],
-        "summary": "Update avatar",
-         "description": "API endpoint for update avatar",
+        "summary": "Updating avatar",
+         "description": "API endpoint for updating avatar",
 
         "parameters": [
           {
