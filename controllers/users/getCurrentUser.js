@@ -2,7 +2,15 @@ const { Pet} = require('../../models');
 
 const getCurrentUser = async (req, res, next) => {
   const { user } = req;
-  const { name, email, _id: id, cityRegion, birthday, mobilePhone } = user;
+  const {
+    name,
+    email,
+    _id: id,
+    cityRegion,
+    birthday,
+    mobilePhone,
+    avatarURL,
+  } = user;
 
   const pets = await Pet.find({ owner: id }).populate('owner', '_id name');
   
@@ -12,6 +20,7 @@ const getCurrentUser = async (req, res, next) => {
     birthday,
     mobilePhone,
     cityRegion,
+    avatarURL,
     id,
     pets,
   });
