@@ -556,7 +556,7 @@
     "notices/category/:category": {
         "get": {
         "tags": ["Notices"],
-        "summary": "Getting notices from the category and title",
+        "summary": "Getting notices by the category or title",
         "description": "API endpoint for getting all notice ",
 
         "parameters": [
