@@ -12,7 +12,6 @@
       "url": "http://localhost:3000"
     }
   ],
-
   "tags": [
      {
       "name": "Auth",
@@ -39,7 +38,6 @@
       "description": "The Users tag represents the set of APIs related to user management. It includes endpoints for registering a new user, logging in, updating user information, updating the user's profile photo, checking authentication status, and refreshing the authentication token."
     }     
   ],
-
   "paths": {
     "/auth/google": {
       "get": {
@@ -194,7 +192,6 @@
         }
       }
     },
-
      "services": {
       "get": {
         "tags": ["Services-sidebar"],
@@ -246,7 +243,6 @@
         }
       }
     },
-
     "news": {
       "get": {
         "tags": ["News"],
@@ -298,7 +294,6 @@
         }
       }
     },
-
     "notices": {
       "post": {
         "tags": ["Notices"],
@@ -708,7 +703,6 @@
       }
    
     },
-
     "pets": {
       "post": {
         "tags": ["Pets"],
@@ -923,7 +917,6 @@
         }
       }
     },
-
     "/users/register": {
       "post": {
         "tags": ["User + Pets"],
@@ -1439,9 +1432,9 @@
           }
         }
       }
-    },
-
-    "components": {
+    }
+  },
+  "components": {
     "schemas": {
       "Services": {
         "type": "array",
@@ -2455,11 +2448,4 @@
     }
    }
   }
- }
 }
-
-
-
-
-
-     
