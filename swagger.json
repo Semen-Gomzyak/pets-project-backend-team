@@ -302,8 +302,8 @@
     "notices": {
       "post": {
         "tags": ["Notices"],
-        "summary": "Create new notice",
-        "description": "API endpoint for create new notice",
+        "summary": "Add new notice",
+        "description": "API endpoint for add new notice",
 
         "parameters": [
           {
