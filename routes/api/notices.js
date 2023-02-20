@@ -56,6 +56,6 @@ noticesRouter.get(
 
 noticesRouter.get('/', auth, tryCatchWrapper(getUserNotices));
 
-noticesRouter.delete('/:noticeId', tryCatchWrapper(deleteUserNotice));
+noticesRouter.delete('/:noticeId', auth, tryCatchWrapper(deleteUserNotice));
 
 module.exports = noticesRouter;

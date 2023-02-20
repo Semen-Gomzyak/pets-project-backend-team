@@ -192,7 +192,7 @@
         }
       }
     },
-     "services": {
+     "/services": {
       "get": {
         "tags": ["Services-sidebar"],
         "summary": "Getting our friends",
@@ -243,7 +243,7 @@
         }
       }
     },
-    "news": {
+    "/news": {
       "get": {
         "tags": ["News"],
         "summary": "Getting a list of news",
@@ -294,7 +294,58 @@
         }
       }
     },
-    "notices": {
+    "/news/:title": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Getting a list of news",
+        "description": "API endpoint for getting a list of news by title",
+
+        "parameters": [],
+
+        "requestBody": {
+          "description": "News information for creating list of news. Available pagination  (default {page = 1, limit = 6})",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/News"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Get All News by title",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/News"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not found error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notices": {
       "post": {
         "tags": ["Notices"],
         "summary": "Adding new notice",
@@ -418,7 +469,7 @@
         }
       }
     },
-    "notices/:noticeId": {
+    "/notices/:noticeId": {
       "get": {
         "tags": ["Notices"],
         "summary": "Getting notice by id",
@@ -548,7 +599,7 @@
         }
       }
     },
-    "notices/category/:category": {
+    "/notices/category/:category": {
         "get": {
         "tags": ["Notices"],
         "summary": "Getting notices by the category or title",
@@ -600,7 +651,7 @@
         }
       }
     },
-    "notices/:userId/favorites": {
+    "/notices/:userId/favorites": {
       "get": {
         "tags": ["Notices"],
         "summary": "Getting user's favorite list by id",
@@ -648,7 +699,7 @@
         }
       }
     },
-    "notices/:userId/favorites/:noticeId": {
+    "/notices/:userId/favorites/:noticeId": {
       "patch": {
         "tags": ["Notices"],
         "summary": "Updating notice in favorite list",
@@ -703,7 +754,7 @@
       }
    
     },
-    "pets": {
+    "/pets": {
       "post": {
         "tags": ["Pets"],
         "summary": "Adding pets",
@@ -811,7 +862,7 @@
         }
       }
     },
-    "pets/:petId": {
+    "/pets/:petId": {
       "get": {
         "tags": ["Pets"],
         "summary": "Getting pet by id",
@@ -1053,88 +1104,6 @@
         }
       }
     },
-    "/users/userinfo/:userId": {
-      "get": {
-        "tags": ["User + Pets"],
-        "summary": "Getting user info",
-        "description": "API endpoint for getting user information",
-
-        "parameters": [
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "type": "string",
-            "description": "Valid mongo DB id",
-            "example": "63ee26069ac5b92d9b405c03"
-          }
-        ],
-
-        "responses": {
-          "200": {
-            "description": "User information",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserInfo"
-                }
-              }
-            }
-          },
-
-          "400": {
-            "description": "Invalid id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "id is not valid"
-                    }
-                  }
-                }
-              }
-            }
-          },
-
-          "401": {
-            "description": "Authorization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Not authorize to get another user data"
-                    }
-                  }
-                }
-              }
-            }
-          },
-
-          "404": {
-            "description": "User not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "User < user ID > not found"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/users/userupdate/:userId": {
       "patch": {
         "tags": ["User + Pets"],
@@ -1217,7 +1186,7 @@
         }
       }
     },
-    "users/logout": {
+    "/users/logout": {
       "post": {
         "tags": ["User + Pets"],
         "summary": "User logout",
@@ -1270,7 +1239,7 @@
         }
       }
     },
-    "users/current": {
+    "/users/current": {
       "get": {
         "tags": ["User + Pets"],
         "summary": "Getting current user",
@@ -1317,7 +1286,7 @@
         }
       }
     },
-    "users/update": {
+    "/users/update": {
       "put": {
         "tags": ["User + Pets"],
         "summary": "Updating user",
@@ -1375,7 +1344,7 @@
         }
       }
     },
-    "users/avatars": {
+    "/users/avatars": {
       "post": {
         "tags": ["User + Pets"],
         "summary": "Updating avatar",
