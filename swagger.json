@@ -656,7 +656,7 @@
     "notices/:userId/favorites/:noticeId": {
       "patch": {
         "tags": ["Notices"],
-        "summary": "Update notice in favorites list",
+        "summary": "Update notice in favorite list",
         "description": "API endpoint for update notice in favorite list ",
 
         "parameters": [
