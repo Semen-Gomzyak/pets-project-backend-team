@@ -2,13 +2,18 @@ const { Service } = require('../../models');
 const NewError = require('http-errors');
 
 const getServices = async (req, res) => {
-  const { page = 1, limit = 9 } = req.query;
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+
   const skip = page * limit - limit;
 
-  const services = await Service.find({}).skip(skip).limit(limit);
-  if (!services) {
+  const allServices = await Service.find({});
+  if (!allServices) {
     throw NewError(404, 'Services not found');
   }
+
+  const total = allServices.length;
+  const services = allServices.slice(skip, skip + limit);
 
   let mapped = services.map(service => {
     if (service.workDays === null || service.workDays === undefined) {
@@ -30,7 +35,7 @@ const getServices = async (req, res) => {
     return { ...service.toObject(), workDays: mappedDays };
   });
 
-  res.status(200).json({ total: mapped.length, data: mapped });
+  res.status(200).json({ total: total, count: mapped.length, data: mapped });
 };
 
 module.exports = getServices;
