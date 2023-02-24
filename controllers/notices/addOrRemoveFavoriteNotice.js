@@ -32,8 +32,8 @@ const addOrRemoveFavoriteNotice = async (req, res, next) => {
       { new: true },
     );
     return res.status(200).json({
-      message: `notice about "${currentNotice.name}" removed from "favorite"`,
       favoriteNotices: favorites,
+      message: `notice about "${currentNotice.name}" removed from "favorite"`,
     });
   }
 };
