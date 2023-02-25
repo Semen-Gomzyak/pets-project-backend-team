@@ -13,7 +13,7 @@ const {
   getUserNotices,
   deleteUserNotice,
 } = require('../../controllers/notices');
-
+const { upload } = require('../../middlwares/avatar');
 const noticesRouter = express.Router();
 
 noticesRouter.post(
@@ -30,6 +30,7 @@ Look after the fronend and delete one of the posts adding notes
 noticesRouter.post(
   '/',
   auth,
+  upload.single('avatar'),
   validateBody(validateNotice),
   tryCatchWrapper(addNotice),
 );
