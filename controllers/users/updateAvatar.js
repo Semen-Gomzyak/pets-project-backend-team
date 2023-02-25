@@ -5,7 +5,7 @@ const updateAvatar = async (req, res) => {
   const userId = req.params.userId;
   const avatarURL = await updateCloudinaryAvatar(req);
   
-  await User.findByIdAndUpdate(userId, { avatarURL });
+  await User.findByIdAndUpdate(userId, { avatarURL: avatarURL });
 
   res.status(200).json({
     id: userId,
