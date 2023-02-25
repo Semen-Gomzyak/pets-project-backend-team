@@ -10,7 +10,7 @@ const {
 const { auth, tryCatchWrapper, HttpError } = require('../../middlwares');
 const { upload } = require('../../middlwares/avatar');
 
-router.post('/', auth, upload.single('avatar'), tryCatchWrapper(addPet));
+router.post('/', auth, upload.single('avatarURL'), tryCatchWrapper(addPet));
 
 router.get('/', auth, tryCatchWrapper(getUserPets));
 

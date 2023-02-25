@@ -30,7 +30,7 @@ Look after the fronend and delete one of the posts adding notes
 noticesRouter.post(
   '/',
   auth,
-  upload.single('avatar'),
+  upload.single('avatarURL'),
   validateBody(validateNotice),
   tryCatchWrapper(addNotice),
 );
