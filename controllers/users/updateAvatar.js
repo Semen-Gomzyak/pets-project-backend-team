@@ -3,13 +3,13 @@ const { User } = require('../../models');
 
 const updateAvatar = async (req, res) => {
   const userId = req.params.userId;
-  const avatarURL = await updateCloudinaryAvatar(req);
+  const imageUrl = await updateCloudinaryAvatar(req);
   
-  await User.findByIdAndUpdate(userId, { avatarURL: avatarURL });
+  await User.findByIdAndUpdate(userId, { avatarURL: imageUrl });
 
   res.status(200).json({
     id: userId,
-    avatarURL,
+    avatarURL: imageUrl,
   });
 };
 
