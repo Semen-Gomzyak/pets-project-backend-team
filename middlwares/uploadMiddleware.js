@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const { avatarResize } = require('./avatar');
-const { removePngOrJpgFromString } = require('./index');
+const  removePngOrJpgFromString  = require('./removePngOrJpgFromString');
 const { CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET } = process.env;
 
 cloudinary.config({
@@ -19,13 +19,12 @@ const updateCloudinaryAvatar = async (req, res) => {
     const { path: tempUpload, originalname } = req.file;
     avatarResize(originalname);
     const avatarName = `${id}_${originalname}`;
-    const clearAvatarName = await removePngOrJpgFromString(avatarName);
 
     const cloudinaryUpload = await cloudinary.uploader.upload(tempUpload, {
-      public_id: clearAvatarName,
+      public_id: removePngOrJpgFromString(avatarName),
     });
     const avatarURL = cloudinaryUpload.secure_url;
-
+    console.log(cloudinaryUpload);
     return avatarURL;
   } catch (error) {
     return '';
