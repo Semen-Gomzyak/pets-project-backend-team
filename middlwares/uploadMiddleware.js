@@ -24,7 +24,6 @@ const updateCloudinaryAvatar = async (req, res) => {
       public_id: removePngOrJpgFromString(avatarName),
     });
     const avatarURL = cloudinaryUpload.secure_url;
-    console.log(cloudinaryUpload);
     return avatarURL;
   } catch (error) {
     return '';
