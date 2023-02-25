@@ -7,7 +7,7 @@ const validateRegistration = Joi.object({
     .required(),
   name: Joi.string().required(),
   cityRegion: Joi.string()
-    .regex(/^[A-Za-z]+,[\sA-Za-z]+$/)
+    .regex(/^[a-zA-Zа-яА-ЯіІїЇєЄёЁ\s]+,[a-zA-Zа-яА-ЯіІїЇєЄёЁ\s]+$/)
     .required(),
   mobilePhone: Joi.string()
     .regex(/^\+380\d{9}$/)
