@@ -1,4 +1,5 @@
 const cloudinary = require('cloudinary').v2;
+const fs = require('fs/promises');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -15,8 +16,9 @@ cloudinary.config({
 
 const updateCloudinaryAvatar = async (req, res) => {
   const id = req.params.id;
+  const { path: tempUpload, originalname } = req.file;
+
   try {
-    const { path: tempUpload, originalname } = req.file;
     avatarResize(originalname);
     const avatarName = `${id}_${originalname}`;
 
@@ -26,6 +28,7 @@ const updateCloudinaryAvatar = async (req, res) => {
     const avatarURL = cloudinaryUpload.secure_url;
     return avatarURL;
   } catch (error) {
+    await fs.unlink(tempUpload);
     return '';
   }
 };

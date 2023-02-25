@@ -38,7 +38,7 @@ usersRouter.put('/update', auth, tryCatchWrapper(updateAllData));
 usersRouter.post(
   '/avatars',
   auth,
-  upload.single('avatarURL'),
+  upload.single('avatar'),
   tryCatchWrapper(updateAvatar),
 );
 
