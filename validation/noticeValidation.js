@@ -14,9 +14,6 @@ const validateNotice = Joi.object({
   comments: Joi.string().min(8).max(120).required(),
   price: Joi.number().positive(),
   category: Joi.string(),
-  favorite: Joi.string(),
-  avatarURL: Joi.string(),
-  owner: Joi.object(),
 });
 
 
