@@ -31,7 +31,6 @@ noticesRouter.post(
   '/',
   auth,
   upload.single('avatarURL'),
-  validateBody(validateNotice),
   tryCatchWrapper(addNotice),
 );
 
