@@ -13,7 +13,7 @@ const noticeSchema = mongoose.Schema(
     },
     birthdate: {
       type: Date,
-      required: [false, 'valid format date : mm.dd.yyyy'],
+      required: false
     },
     breed: {
       type: String,
