@@ -6,6 +6,7 @@ const getFavoriteNotices = async (req, res, next) => {
   const userFavoriteNotices = await User.findById(userId).populate(
     'favoriteNotices',
     {
+      title: 1,
       birthdate: 1,
       breed: 1,
       location: 1,

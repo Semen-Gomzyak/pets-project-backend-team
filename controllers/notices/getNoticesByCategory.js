@@ -2,13 +2,15 @@ const { Notice } = require('../../models');
 
 const getNoticesByCategory = async (req, res) => {
   const { category } = req.params;
-  const { page = 1, limit = 8 } = req.query;
+  const { page = 1, limit = 10 } = req.query;
   const skip = (page - 1) * limit;
   const notices = await Notice.find({ category }, '', {
     skip,
     limit: Number(limit),
   }).populate('category');
-  res.status(200).json(notices);
+  const total = await Notice.countDocuments({ category }); 
+  console.log(total);
+  res.status(200).json({ total, notices });
 };
 
 module.exports = getNoticesByCategory;
