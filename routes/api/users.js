@@ -12,7 +12,7 @@ const {
   updateAvatar,
   updateAllData,
   verifyEmail,
-  repeatVerifyEmail,
+  // repeatVerifyEmail,
 } = require('../../controllers/users');
 
 const { validateRegistration, loginValidation } = require('../../validation');
@@ -44,5 +44,6 @@ usersRouter.post(
 
 // usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
 // usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
+usersRouter.post('/verify', tryCatchWrapper(verifyEmail));
 
 module.exports = usersRouter;

@@ -1,24 +1,21 @@
-const nodemailer = require('nodemailer');
-const { EMAIL_PASS, EMAIL_USER } = process.env;
+const sendGrid = require('@sendgrid/mail');
 
-async function sendMail({ to, html, subject }) {
-  const email = {
-    from: 'info@mycontacts.com',
-    to,
-    subject,
-    html,
-  };
+const { SENDGRID_KEY } = process.env;
 
-  const transport = nodemailer.createTransport({
-    host: 'sandbox.smtp.mailtrap.io',
-    port: 2525,
-    auth: {
-      user: EMAIL_USER,
-      pass: EMAIL_PASS,
-    },
-  });
+sendGrid.setApiKey(SENDGRID_KEY);
 
-  await transport.sendMail(email);
-}
+const sendEmail = async data => {
+  try {
+    const email = {
+      ...data,
+      from: 'ruslan.shyrogorov@icloud.com',
+    };
 
-module.exports = sendMail;
+    await sendGrid.send(email);
+    return true;
+  } catch (error) {
+    console.log('sendGrid error', error);
+  }
+};
+
+module.exports = sendEmail;
