@@ -11,7 +11,6 @@ const {
   getCurrentUser,
   updateAvatar,
   updateAllData,
-  verifyEmail,
   // repeatVerifyEmail,
 } = require('../../controllers/users');
 
@@ -44,6 +43,5 @@ usersRouter.post(
 
 // usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
 // usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
-usersRouter.post('/verify', tryCatchWrapper(verifyEmail));
 
 module.exports = usersRouter;
