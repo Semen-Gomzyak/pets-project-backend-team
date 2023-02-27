@@ -4,7 +4,6 @@ const validateBody = require('./ValidateBody');
 const removePngOrJpgFromString = require('./removePngOrJpgFromString');
 const tryCatchWrapper = require('./tryCatchWrapper');
 
-const sendMail = require('./sendMail');
 const updateCloudinaryAvatar = require('./uploadMiddleware');
 const upload = require('./avatar');
 
@@ -14,7 +13,6 @@ module.exports = {
   validateBody,
   removePngOrJpgFromString,
   tryCatchWrapper,
-  sendMail,
   updateCloudinaryAvatar,
   upload,
 };
