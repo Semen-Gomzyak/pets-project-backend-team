@@ -12,7 +12,7 @@ const validateNotice = Joi.object({
   location: Joi.string().required(),
   theSex: Joi.string().required(),
   comments: Joi.string().min(8).max(120).required(),
-  price: Joi.number().positive(),
+  price: Joi.number(),
   category: Joi.string(),
 });
 
