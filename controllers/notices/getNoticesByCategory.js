@@ -9,7 +9,7 @@ const getNoticesByCategory = async (req, res) => {
     limit: Number(limit),
   }).populate('category');
   const total = await Notice.countDocuments({ category }); 
-  console.log(total);
+
   res.status(200).json({ total, notices });
 };
 

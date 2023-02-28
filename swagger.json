@@ -294,57 +294,6 @@
         }
       }
     },
-    "/news/:title": {
-      "get": {
-        "tags": ["News"],
-        "summary": "Getting a list of news",
-        "description": "API endpoint for getting a list of news by title",
-
-        "parameters": [],
-
-        "requestBody": {
-          "description": "News information for creating list of news. Available pagination  (default {page = 1, limit = 6})",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/News"
-              }
-            }
-          }
-        },
-
-        "responses": {
-          "201": {
-            "description": "Get All News by title",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/News"
-                }
-              }
-            }
-          },
-
-          "404": {
-            "description": "Not found error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Not found"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/notices": {
       "post": {
         "tags": ["Notices"],

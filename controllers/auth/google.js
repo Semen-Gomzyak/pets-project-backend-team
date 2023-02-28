@@ -11,7 +11,9 @@ const google = async (req, res) => {
   const token = jwt.sign(payload, SECRET, { expiresIn: '1h' });
   await User.findByIdAndUpdate(id, { token });
 
-  res.redirect(`http://localhost:3000?token=${token}`);
+  res.redirect(
+    `https://pets-project-frontend.vercel.app/profile?token=${token}`,
+  );
 };
 
 module.exports = google;

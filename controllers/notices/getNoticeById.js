@@ -20,7 +20,7 @@ const getNoticeById = async (req, res, next) => {
       price,
       avatarURL
     } = currentNotice;
-  console.log(user);
+
   return res.status(201).json({
     email,
     phone,

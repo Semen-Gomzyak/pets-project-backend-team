@@ -11,7 +11,6 @@ const {
   getCurrentUser,
   updateAvatar,
   updateAllData,
-  // repeatVerifyEmail,
 } = require('../../controllers/users');
 
 const { validateRegistration, loginValidation } = require('../../validation');
@@ -40,8 +39,5 @@ usersRouter.post(
   upload.single('avatar'),
   tryCatchWrapper(updateAvatar),
 );
-
-// usersRouter.get('/verify/:verificationToken', tryCatchWrapper(verifyEmail));
-// usersRouter.get('/verify', tryCatchWrapper(repeatVerifyEmail));
 
 module.exports = usersRouter;
