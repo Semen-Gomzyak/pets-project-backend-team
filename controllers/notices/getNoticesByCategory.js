@@ -1,28 +1,22 @@
 const { Notice } = require('../../models');
 
-const getByCategoryAndTitle = async (req, res) => {
-  const { title, category } = req.params;
-  const { page = 1, limit = 8 } = req.query;
+const getNoticesByCategory = async (req, res) => {
+  const { category } = req.params;
+  const { page = 1, limit = 10 } = req.query;
   const skip = (page - 1) * limit;
-  const notices = await Notice.find({ category }, '', {
-    skip,
-    limit: Number(limit),
-    sort: { createdAt: -1 },
-  }).populate('category');
 
-  const filteredNotices = notices.filter(
-    notice =>
-      notice.title.toLowerCase().includes(title.toLowerCase()) &&
-      notice.category.toLowerCase() === category.toLowerCase(),
-  );
-
-  if (filteredNotices.length === 0) {
-    res.status(400).json('Notice not found');
+  if (req.body && Array.isArray(req.body)) {
+    await Notice.insertMany(req.body, { ordered: false });
   }
 
-  res.status(200).json({
-    filteredNotices: [...filteredNotices].reverse(),
-  });
+  const notices = await Notice.find({ category })
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(Number(limit))
+    .populate('category');
+  const total = await Notice.countDocuments({ category });
+
+  res.status(200).json({ total, notices });
 };
 
-module.exports = getByCategoryAndTitle;
+module.exports = getNoticesByCategory;
